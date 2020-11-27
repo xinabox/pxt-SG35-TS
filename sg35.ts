@@ -232,7 +232,7 @@ let j = 0
         control.inBackground(function(){
                 while(true)
                 {
-                    console.logValue("j", j++)
+                    console.logValue("status", _status)
                     let rcv = read()
                     if(rcv)
                     {
