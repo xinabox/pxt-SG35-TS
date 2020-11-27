@@ -28,7 +28,7 @@ namespace sg35
 	let initialized = false
     let onReceivedDataHandler: (pm1: number, pm25: number, pm10: number) => void;
 
-export function makeWord(b1: number, b2: number): NumberFormat.UInt16LE
+export function makeWord(b1: NumberFormat.UInt8LE, b2: NumberFormat.UInt8LE): NumberFormat.UInt16LE
 {
     return (b1 << 8) | b2;
 }
@@ -247,65 +247,7 @@ export function loop()
         init()
         onReceivedDataHandler = cb
     }
-
-/*
-    static PMS *pms = new PMS();
-    PMS::DATA data;
-    //%
-    bool read()
-    {
-        return pms->read(data);
-    }
-    //%
-    void begin()
-    {
-        pms->begin();
-    }
-    //%
-    void activeMode()
-    {
-        pms->activeMode();
-    }
-    //%
-    void passiveMode()
-    {
-        pms->passiveMode();
-    }
-
-    //%
-    uint16_t pm1()
-    {
-        return data.PM_AE_UG_1_0;
-    }
-
-    //%
-    uint16_t pm25()
-    {
-        return data.PM_AE_UG_2_5;
-    }
-
-    //%
-    uint16_t pm10()
-    {
-        return data.PM_AE_UG_10_0;
-    }
 	
-	//%
-	void turnPowerSavingModeOn()
-	{
-		pms->sleep();
-	}
-	
-	//%
-	void wakeUpSG35()
-	{
-		pms->wakeUp();
-	}
-
-    //%
-    void onDataReceived(Action body)
-    {
-        registerWithDal(0, 1, body);
-    }*/
+	begin();
 
 } // namespace sg35

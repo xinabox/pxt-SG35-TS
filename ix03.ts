@@ -100,7 +100,7 @@ let OUTPUT = 1
 let HIGH = 1
 
 
-export function begin(baudRate: NumberFormat.UInt8LE): boolean
+export function begin(baudRate: NumberFormat.UInt16LE): boolean
 {
 	i2cAddr = SC16IS740_I2C_ADDR << 1
     resetDevice();
@@ -116,7 +116,7 @@ export function config()
     writeByte(SC16IS740_LCR, 0x03); // SERIAL_8N1
 }
 
-export function setBaudRate(baudRate: number)
+export function setBaudRate(baudRate: NumberFormat.UInt16LE)
 {
     let old_data: NumberFormat.UInt8LE = 0
 	let new_data: NumberFormat.UInt8LE = 0
@@ -204,7 +204,7 @@ void xIX03::flush()
 
 
 
-export function available()
+export function available(): NumberFormat.UInt8LE
 {
     return readByte(SC16IS740_RXLVL);
 }
@@ -216,7 +216,7 @@ export function available()
 
 
 
-export function read(): number
+export function read(): NumberFormat.UInt8LE
 {
     if (available() == 0)
         return 0;
@@ -227,9 +227,9 @@ void xIX03::end()
 {
 }
 */
-export function pinMode(pin: number, mode: number)
+export function pinMode(pin: NumberFormat.UInt8LE, mode: NumberFormat.UInt8LE)
 {
-    let _reg = readByte(SC16IS740_IODIR);
+    let _reg: NumberFormat.UInt8LE = readByte(SC16IS740_IODIR);
     if (mode == OUTPUT)
     {
         _reg |= 1 << pin;
@@ -241,9 +241,9 @@ export function pinMode(pin: number, mode: number)
     writeByte(SC16IS740_IODIR, _reg);
 }
 
-export function digitalWrite(pin: number, state: number)
+export function digitalWrite(pin: NumberFormat.UInt8LE, state: NumberFormat.UInt8LE)
 {
-    let _reg = readByte(SC16IS740_IOSTATE);
+    let _reg:NumberFormat.UInt8LE = readByte(SC16IS740_IOSTATE);
     if (state == HIGH)
     {
         _reg |= 1 << pin;
@@ -285,7 +285,7 @@ export function writeByte(reg: number, val: number)
 
 }
 
-export function readByte(reg: NumberFormat.UInt8LE): number
+export function readByte(reg: NumberFormat.UInt8LE): NumberFormat.UInt8LE
 {
     //uint8_t val[1] = {reg << 3};
 	
