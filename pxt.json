@@ -1,18 +1,19 @@
 {
     "name": "pxt-SG35",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "SG35 TypeScript version",
     "license": "MIT",
     "dependencies": {
         "core": "*",
-        "radio": "*"
+        "radio": "*",
+        "microphone": "*"
     },
     "files": [
         "README.md",
         "main.blocks",
         "main.ts",
-		"ix03.ts",
-		"sg35.ts"
+        "ix03.ts",
+        "sg35.ts"
     ],
     "testFiles": [
         "test.ts"
@@ -21,5 +22,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "tsprj"
 }
