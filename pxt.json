@@ -1,6 +1,6 @@
 {
     "name": "pxt-SG35",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "SG35 TypeScript version",
     "license": "MIT",
     "dependencies": {
