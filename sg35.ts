@@ -142,7 +142,7 @@ export function loop()
         case 0:
             if (ch != 0x42)
             {
-                return;
+                break;
             }
             _calculatedChecksum = ch;
             break;
@@ -151,7 +151,7 @@ export function loop()
             if (ch != 0x4D)
             {
                 _index = 0;
-                return;
+                break;
             }
             _calculatedChecksum += ch;
             break;
@@ -167,7 +167,7 @@ export function loop()
             if (_frameLen != 2 * 9 + 2 && _frameLen != 2 * 13 + 2)
             {
                 _index = 0;
-                return;
+                break;
             }
             _calculatedChecksum += ch;
             break;
@@ -203,7 +203,7 @@ export function loop()
                 }
 
                 _index = 0;
-                return;
+                break;
             }
             else
             {
