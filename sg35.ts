@@ -225,12 +225,14 @@ export function loop()
     }
 }
 
+let j = 0
 
     function init() {
 
         control.inBackground(function(){
                 while(true)
                 {
+                    console.logValue("j", j++)
                     let rcv = read()
                     if(rcv)
                     {
