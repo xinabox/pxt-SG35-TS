@@ -135,28 +135,34 @@ export function loop()
     _status = STATUS_WAITING;
     if (ix03.available())
     {
+        console.log("Available\n")
         let ch = ix03.read();
 
         switch (_index)
         {
         case 0:
+            console.log("case 0 before return\n")
             if (ch != 0x42)
             {
                 return;
             }
+            console.log("case 0 after return\n")
             _calculatedChecksum = ch;
             break;
 
         case 1:
+            console.log("case 1 before return\n")
             if (ch != 0x4D)
             {
                 _index = 0;
                 return;
             }
+            console.log("case 1 after return\n")
             _calculatedChecksum += ch;
             break;
 
         case 2:
+            console.log("case 2\n")
             _calculatedChecksum += ch;
             _frameLen = ch << 8;
             break;
@@ -164,25 +170,32 @@ export function loop()
         case 3:
             _frameLen |= ch;
             // Unsupported sensor, different frame length, transmission error e.t.c.
+            console.log("case 3 before return before if\n")
             if (_frameLen != 2 * 9 + 2 && _frameLen != 2 * 13 + 2)
             {
+               console.log("case 3 before return inside if\n")
                 _index = 0;
                 return;
             }
+            console.log("case 3 after return after if\n")
             _calculatedChecksum += ch;
             break;
 
         default:
+            console.log("inside case default\n")
             if (_index == _frameLen + 2)
             {
+                console.log("inside case default _index == _frameLen + 2\n")
                 _checksum = ch << 8;
             }
             else if (_index == _frameLen + 2 + 1)
             {
+                console.log("inside case default _frameLen + 2 + 1\n")
                 _checksum |= ch;
 
                 if (_calculatedChecksum == _checksum)
                 {
+                    console.log("inside case default Checksum is OK\n")
                     _status = STATUS_OK;
 
                     // Standard Particles, CF=1.
@@ -207,6 +220,7 @@ export function loop()
             }
             else
             {
+                console.log("inside case default Checksum is not OK\n")
                 _calculatedChecksum += ch;
                 let payloadIndex = _index - 4;
 
